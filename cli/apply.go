@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"
@@ -66,7 +66,7 @@ func (f *FlagData) Apply() error {
 		counts["close/"+a.Reason]++
 	}
 	cout.Printf("applying <yellow>%d</> closes to <white>%s</>%s:\n", len(actions), f.GH.Repo, issue.DryRunTag(f.DryRun))
-	cout.PrintCounts(counts)
+	text.PrintCounts(counts)
 
 	if !f.DryRun && !f.Yes {
 		ok, err := issue.Confirm(fmt.Sprintf("close <yellow>%d</> issues on %s?", len(actions), f.RepoTag()))
@@ -168,7 +168,7 @@ func (f *FlagData) Apply() error {
 		}
 		applied++
 		cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", a.StateReason)
-		cout.Quietf("%d@closed@%s\n", a.IssueNumber, a.Reason)
+		cout.QuietOnlyf("%d@closed@%s\n", a.IssueNumber, a.Reason)
 	}
 
 	if f.DryRun {

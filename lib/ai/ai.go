@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/katbyte/koi/lib/clog"
+	"github.com/katbyte/go-kt/clog"
 )
 
 type AI struct {

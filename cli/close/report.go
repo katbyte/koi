@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/cli"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"
@@ -146,7 +146,7 @@ func (f *Flags) Report() error {
 	if !o.WithAI {
 		cout.Printf("<gray>rerun with</> <cyan>--with-ai</> <gray>to score every candidate, or</> <cyan>--limit 10</> <gray>to test cheaply</>\n")
 	}
-	// file:// urls so the terminal makes every page clickable
+	// print file:// urls so the terminal makes every page clickable
 	for _, p := range []string{htmlPath, closedHTML, reviewHTML} {
 		if p == "" {
 			continue

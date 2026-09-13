@@ -13,8 +13,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -411,7 +411,7 @@ func (f *Flags) reopenOneReview(d *db.DB, repo gh.Repo, fdg *reviewFinding, v *i
 		}
 	}
 	cout.Printf("      <fg=28>reopened</>\n")
-	cout.Quietf("%d@reopened@%s\n", fdg.number, fdg.class)
+	cout.QuietOnlyf("%d@reopened@%s\n", fdg.number, fdg.class)
 	return issue.ApplySet, nil
 }
 

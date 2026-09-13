@@ -9,7 +9,7 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -50,6 +50,6 @@ func (f *Flags) addLabels(repo gh.Repo, i *db.Issue, labels []string, throttle f
 		return issue.ApplyFailed, nil
 	}
 	cout.Printf("      <fg=28>added</> <lightMagenta>%s</>\n", strings.Join(labels, " "))
-	cout.Quietf("%d@labelled@%s\n", i.Number, strings.Join(labels, ","))
+	cout.QuietOnlyf("%d@labelled@%s\n", i.Number, strings.Join(labels, ","))
 	return issue.ApplySet, nil
 }

@@ -14,8 +14,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -409,7 +409,7 @@ func (f *Flags) closeOneDocs(d *db.DB, repo gh.Repo, fdg *docsFinding, v *issue.
 	}
 
 	cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", issue.StateCompleted)
-	cout.Quietf("%d@closed@%s\n", fdg.issue.Number, reasonDocs)
+	cout.QuietOnlyf("%d@closed@%s\n", fdg.issue.Number, reasonDocs)
 
 	best := fdg.pages[fdg.best]
 	a := &db.Action{
@@ -534,7 +534,7 @@ func (f *Flags) docsJudgeItems(d *db.DB, findings []docsFinding, src, ref string
 // report, with the AI's score when judged.
 func (f *Flags) printDocsCard(fdg *docsFinding, pos, total int, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	for _, p := range fdg.pages {
 		switch {

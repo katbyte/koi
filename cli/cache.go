@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 )
 
 // cacheDomain is one clearable slice of the local db: fetched/derived data that

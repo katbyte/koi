@@ -9,7 +9,7 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"
@@ -231,7 +231,7 @@ func printCheckedPR(pos, total int, p *db.MSPR) {
 		cout.Printf("  <gray>%6d/%d</> <cyan>#%-6d</> <gray>cited number is an issue, skipping</>\n", pos, total, p.Number)
 		return
 	}
-	state := cout.StateTag(p.State)
+	state := text.StateTag(p.State)
 	ms := "<red>no milestone</>"
 	if p.Milestone != "" {
 		ms = "<lightMagenta>" + p.Milestone + "</>"
@@ -309,7 +309,7 @@ func (f *Flags) applyPRMilestones(d *db.DB, findings []prFinding, milestones map
 		}
 		applied++
 		cout.Printf("      <fg=28>set milestone →</> <lightMagenta>%s</>\n", fdg.expected)
-		cout.Quietf("%d@pr-milestone@%s\n", fdg.pr.Number, fdg.expected)
+		cout.QuietOnlyf("%d@pr-milestone@%s\n", fdg.pr.Number, fdg.expected)
 		if err := d.SetMSPRMilestone(fdg.pr.Number, fdg.expected); err != nil {
 			return err
 		}

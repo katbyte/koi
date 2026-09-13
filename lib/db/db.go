@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/katbyte/koi/lib/clog"
+	"github.com/katbyte/go-kt/clog"
 	_ "modernc.org/sqlite" // pure-go sqlite driver
 )
 

@@ -4,14 +4,17 @@ import (
 	"os"
 
 	c "github.com/gookit/color"
+	"github.com/katbyte/go-kt/clog"
 	"github.com/katbyte/koi/cli"
 	"github.com/katbyte/koi/cli/close"
 	"github.com/katbyte/koi/cli/label"
 	"github.com/katbyte/koi/cli/milestone"
-	"github.com/katbyte/koi/lib/clog"
 )
 
 func main() {
+	// the log level comes from KOI_LOG; read it once here, before anything logs
+	clog.SetLevelFromEnv("KOI_LOG")
+
 	// the command groups are wired here rather than in a package: koi builds
 	// the root, and each group hangs off it
 	cmd, err := cli.Make()

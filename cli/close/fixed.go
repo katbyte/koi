@@ -16,8 +16,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -514,7 +514,7 @@ func (f *Flags) closeOneFixed(d *db.DB, repo gh.Repo, fdg *fixedFinding, v *issu
 	}
 
 	cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", issue.StateCompleted)
-	cout.Quietf("%d@closed@%s\n", fdg.issue.Number, reason)
+	cout.QuietOnlyf("%d@closed@%s\n", fdg.issue.Number, reason)
 	return issue.ApplySet, f.recordFixedClose(d, fdg, v, tmplName, reason)
 }
 
@@ -523,7 +523,7 @@ func (f *Flags) closeOneFixed(d *db.DB, repo gh.Repo, fdg *fixedFinding, v *issu
 // score when judged.
 func (f *Flags) printFixedCard(fdg *fixedFinding, pos, total int, prVersions map[int][]string, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	for i := range fdg.prs {
 		cout.Printf("      %s\n", fixedPRLine(&fdg.prs[i], prVersions))

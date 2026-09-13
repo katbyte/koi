@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/katbyte/koi/lib/clog"
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/clog"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -213,7 +213,7 @@ func (f *FlagData) fullWalk(d *db.DB, client *gh.Client, owner, name, cursor str
 // (green closed / orange open), title, and the facts that ride along.
 func printFetchedIssue(pos, total int, b *db.IssueBundle) {
 	i := &b.Issue
-	state := cout.StateTag(i.State)
+	state := text.StateTag(i.State)
 	extra := fmt.Sprintf(" <gray>· 💬 %d</>", i.CommentCount)
 	if i.ThumbsUp > 0 {
 		extra += fmt.Sprintf(" <gray>· 👍 %d</>", i.ThumbsUp)

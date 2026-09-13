@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/text"
 )

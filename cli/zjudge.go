@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"

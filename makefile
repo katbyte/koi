@@ -2,7 +2,7 @@ GIT_COMMIT=$(shell git describe --always --long --dirty 2>/dev/null || echo none
 GIT_VERSION=$(shell git describe --tags --dirty 2>/dev/null | sed 's/-\([0-9]*\)-g/+\1@g/' | grep . || echo dev)
 GOLANGCI_LINT_VERSION?=v2.12.2
 TEST_TIMEOUT?=15m
-LDFLAGS=-X github.com/katbyte/koi/lib/version.GitCommit=${GIT_COMMIT} -X github.com/katbyte/koi/lib/version.Version=${GIT_VERSION}
+LDFLAGS=-X github.com/katbyte/go-kt/version.GitCommit=${GIT_COMMIT} -X github.com/katbyte/go-kt/version.Version=${GIT_VERSION}
 
 default: fmt build
 

@@ -11,8 +11,8 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/katbyte/koi/lib/cout"
-	"github.com/katbyte/koi/lib/version"
+	"github.com/katbyte/go-kt/cout"
+	"github.com/katbyte/go-kt/version"
 )
 
 // Make builds the koi root command with its persistent flags and the

@@ -18,8 +18,8 @@ import (
 
 	"golang.org/x/term"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -475,7 +475,7 @@ func (f *Flags) closeOneErrors(d *db.DB, repo gh.Repo, fdg *errorsFinding, v *is
 	}
 
 	cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", issue.StateNotPlanned)
-	cout.Quietf("%d@closed@%s\n", fdg.issue.Number, reasonErrors)
+	cout.QuietOnlyf("%d@closed@%s\n", fdg.issue.Number, reasonErrors)
 
 	a := &db.Action{
 		IssueNumber: fdg.issue.Number, Action: db.ActionClose, Reason: reasonErrors,
@@ -596,7 +596,7 @@ func (f *Flags) errorsJudgeItems(d *db.DB, findings []errorsFinding, ref string)
 // verification status, and the AI's score when judged.
 func (f *Flags) printErrorsCard(fdg *errorsFinding, pos, total int, ref string, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	if fdg.version != "" {
 		cout.Printf("      <gray>reported against</> <lightMagenta>v%s</>\n", fdg.version)

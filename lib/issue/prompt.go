@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/browser"
 	"golang.org/x/term"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 )
 
 // stdinReader is shared so successive prompts don't lose buffered input.

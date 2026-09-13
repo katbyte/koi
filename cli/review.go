@@ -6,9 +6,10 @@ import (
 
 	"github.com/pkg/browser"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
+	"github.com/katbyte/koi/lib/text"
 )
 
 // Review walks proposals one card at a time. Every card carries the full
@@ -226,12 +227,12 @@ func (f *FlagData) previewTemplate(card *issue.Card) {
 		cout.Printf("  <gray>no template: not a close proposal</>\n")
 		return
 	}
-	text, err := issue.RenderCloseComment(card.Issue, card.Signals, card.Action, f.CurrentMajor)
+	comment, err := issue.RenderCloseComment(card.Issue, card.Signals, card.Action, f.CurrentMajor)
 	if err != nil {
 		cout.Errorf("  <red>rendering template:</> %v\n", err)
 		return
 	}
-	cout.Printf("\n<gray>── comment that would be posted on #%d ──</>\n%s\n<gray>──</>\n", card.Issue.Number, text)
+	cout.Printf("\n<gray>── comment that would be posted on #%d ──</>\n%s\n<gray>──</>\n", card.Issue.Number, comment)
 }
 
 // approveAll bulk-approves everything matching the filters after a summary + confirm.
@@ -241,7 +242,7 @@ func (f *FlagData) approveAll(d *db.DB, actions []*db.Action) error {
 		counts[a.Action+"/"+a.Reason]++
 	}
 	cout.Printf("bulk approving <yellow>%d</> proposals:\n", len(actions))
-	cout.PrintCounts(counts)
+	text.PrintCounts(counts)
 
 	if !f.Yes {
 		ok, err := issue.Confirm(fmt.Sprintf("approve all %d?", len(actions)))

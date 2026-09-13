@@ -8,7 +8,7 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -354,7 +354,7 @@ func (f *Flags) closeOneLegacy(d *db.DB, repo gh.Repo, fdg *legacyFinding, v *is
 	}
 
 	cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", fdg.action.StateReason)
-	cout.Quietf("%d@closed@%s\n", fdg.issue.Number, fdg.action.Reason)
+	cout.QuietOnlyf("%d@closed@%s\n", fdg.issue.Number, fdg.action.Reason)
 
 	if v != nil {
 		fdg.action.Confidence = v.Confidence
@@ -387,7 +387,7 @@ func (f *Flags) printLegacyCard(fdg *legacyFinding, pos, total int, v *issue.Ver
 		kindTag, kind = cli.TagYellow, "unlabelled, probably a bug"
 	}
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, i.Number, cout.StateTag(i.State), text.TruncateRunes(text.OneLine(i.Title), 90), f.IssueURL(i.Number))
+		pos, total, i.Number, text.StateTag(i.State), text.TruncateRunes(text.OneLine(i.Title), 90), f.IssueURL(i.Number))
 	cout.Printf("      <%s>%s</> <gray>on</> <lightMagenta>v%s</> <gray>(%s)</> <gray>· opened %s · last activity %s · 💬 %d · 👍 %d</>\n",
 		kindTag, kind, text.OrDefault(s.VersionFull, fmt.Sprintf("%d.x", s.VersionMajor)), s.VersionSource,
 		i.CreatedAt.Format("2006-01-02"), s.LastActivity.Format("2006-01-02"), i.CommentCount, i.ThumbsUp)

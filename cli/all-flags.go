@@ -14,8 +14,8 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
+	"github.com/katbyte/go-kt/clog"
 	"github.com/katbyte/koi/lib/ai"
-	"github.com/katbyte/koi/lib/clog"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"

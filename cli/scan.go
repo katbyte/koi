@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/text"
@@ -219,7 +219,7 @@ func scanBundles(nodes []gh.ScanIssueNode, repo string) []db.MSBundle {
 // (green closed / orange open), title, milestone, and how its fix PRs link.
 func printScannedIssue(pos, total int, b *db.MSBundle) {
 	i := &b.Issue
-	state := cout.StateTag(i.State)
+	state := text.StateTag(i.State)
 	var extra strings.Builder
 	if i.Milestone != "" {
 		fmt.Fprintf(&extra, " <gray>·</> <lightMagenta>%s</>", i.Milestone)

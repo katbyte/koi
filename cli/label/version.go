@@ -18,7 +18,7 @@ import (
 
 	"github.com/katbyte/koi/lib/gh"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"
@@ -391,7 +391,7 @@ func (f *Flags) versionJudgeItems(findings []versionFinding) (string, []issue.Ju
 // and each proposed major with the quotes behind it.
 func (f *Flags) printVersionCard(fdg *versionFinding, pos, total int, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	if len(fdg.existing) > 0 {
 		// green = already recorded, distinct from the lightMagenta adds — two

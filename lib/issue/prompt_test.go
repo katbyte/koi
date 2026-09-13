@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 )
 
 // TestAskClose pins the one interactive path every close check runs through:

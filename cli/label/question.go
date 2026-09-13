@@ -13,7 +13,7 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
-	"github.com/katbyte/koi/lib/cout"
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"
@@ -376,7 +376,7 @@ func (f *Flags) questionJudgeItems(findings []questionFinding) (string, []issue.
 // claim, and the quotes behind the proposal.
 func (f *Flags) printQuestionCard(fdg *questionFinding, pos, total int, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	if fdg.kind != "" {
 		// orange = a kind its labels already claim, a relabel not a fill —

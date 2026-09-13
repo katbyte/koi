@@ -14,8 +14,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -326,7 +326,7 @@ func (f *Flags) syncFixPRMilestones(repo gh.Repo, fdg *msFinding, m *db.Mileston
 		} else {
 			cout.Printf("      <fg=208>fix PR #%d carried %s — set milestone → %s</>\n", pr, live.Milestone.Title, fdg.expected)
 		}
-		cout.Quietf("%d@pr-milestone@%s\n", pr, fdg.expected)
+		cout.QuietOnlyf("%d@pr-milestone@%s\n", pr, fdg.expected)
 	}
 }
 
@@ -630,7 +630,7 @@ func (f *Flags) applyOneMilestone(d *db.DB, repo gh.Repo, fdg *msFinding, milest
 		return issue.ApplyFailed, nil
 	}
 	cout.Printf("      <fg=28>set milestone →</> <lightMagenta>%s</>\n", fdg.expected)
-	cout.Quietf("%d@milestone@%s\n", fdg.issue.Number, fdg.expected)
+	cout.QuietOnlyf("%d@milestone@%s\n", fdg.issue.Number, fdg.expected)
 	f.syncFixPRMilestones(repo, fdg, &m, throttle)
 
 	// keep the local scan in sync so a re-audit doesn't re-propose it

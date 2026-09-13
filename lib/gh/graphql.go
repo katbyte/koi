@@ -16,8 +16,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/katbyte/koi/lib/chttp"
-	"github.com/katbyte/koi/lib/clog"
+	"github.com/katbyte/go-kt/chttp"
+	"github.com/katbyte/go-kt/clog"
 )
 
 const endpoint = "https://api.github.com/graphql"

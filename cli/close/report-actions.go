@@ -15,8 +15,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/issue"
 	"github.com/katbyte/koi/lib/text"
@@ -125,7 +125,7 @@ func (f *Flags) ActionsTaken() error {
 		counts[s.Check] = len(s.Items)
 	}
 	cout.Printf("wrote <cyan>%s</> and <cyan>%s</> — <yellow>%d</> actions taken\n", htmlPath, csvPath, data.Total)
-	cout.PrintCounts(counts)
+	text.PrintCounts(counts)
 	if abs, aerr := filepath.Abs(htmlPath); aerr == nil {
 		cout.Printf("<gray>open:</> <cyan>file://%s</>\n", abs)
 	}

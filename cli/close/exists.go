@@ -10,8 +10,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -677,7 +677,7 @@ func (f *Flags) closeOneExists(d *db.DB, repo gh.Repo, fdg *existsFinding, v *is
 	}
 
 	cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", issue.StateCompleted)
-	cout.Quietf("%d@closed@%s\n", fdg.issue.Number, reasonExists)
+	cout.QuietOnlyf("%d@closed@%s\n", fdg.issue.Number, reasonExists)
 
 	best := fdg.evidence[0]
 	what := best.name
@@ -807,7 +807,7 @@ func (f *Flags) existsJudgeItems(d *db.DB, findings []existsFinding) (string, []
 // which appears to deliver it, with the AI's score when judged.
 func (f *Flags) printExistsCard(fdg *existsFinding, pos, total int, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	if fdg.kindUnconfirmed {
 		cout.Printf("      <yellow>unlabelled — carried as a probable request, the AI confirms it</>\n")

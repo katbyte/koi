@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/lib/ai"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 )
 

@@ -10,8 +10,8 @@ import (
 
 	"github.com/katbyte/koi/cli"
 
+	"github.com/katbyte/go-kt/cout"
 	"github.com/katbyte/koi/assets"
-	"github.com/katbyte/koi/lib/cout"
 	"github.com/katbyte/koi/lib/db"
 	"github.com/katbyte/koi/lib/gh"
 	"github.com/katbyte/koi/lib/issue"
@@ -427,7 +427,7 @@ func (f *Flags) closeOneDeprecated(d *db.DB, repo gh.Repo, fdg *deprecatedFindin
 	}
 
 	cout.Printf("      <fg=28>commented + closed as</> <lightMagenta>%s</>\n", issue.StateNotPlanned)
-	cout.Quietf("%d@closed@%s\n", fdg.issue.Number, reasonDeprecated)
+	cout.QuietOnlyf("%d@closed@%s\n", fdg.issue.Number, reasonDeprecated)
 
 	best := fdg.matches[0].removal
 	what := best.Resource
@@ -591,7 +591,7 @@ func matchLine(t string, re *regexp.Regexp) string {
 // leans on, successors included, and the AI's moot score when judged.
 func (f *Flags) printDeprecatedCard(fdg *deprecatedFinding, pos, total int, v *issue.Verdict) {
 	cout.Printf("\n  <gray>%d/%d</> <cyan>#%d</> %s <bold>%s</> <darkGray>%s</>\n",
-		pos, total, fdg.issue.Number, cout.StateTag(fdg.issue.State),
+		pos, total, fdg.issue.Number, text.StateTag(fdg.issue.State),
 		text.TruncateRunes(text.OneLine(fdg.issue.Title), 90), f.IssueURL(fdg.issue.Number))
 	shown := 0
 	for _, m := range fdg.matches {
