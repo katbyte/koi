@@ -201,7 +201,7 @@ func (f *Flags) collectStale(d *db.DB, link string) (*staleCollection, error) {
 			return nil, cerr
 		}
 		var last *db.Comment
-		for ci := len(comments) - 1; ci >= 0; ci-- {
+		for ci := range slices.Backward(comments) {
 			if !questionsBot(comments[ci].Author) {
 				last = &comments[ci]
 				break
