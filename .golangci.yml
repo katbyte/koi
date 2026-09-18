@@ -123,7 +123,7 @@ linters:
     tagalign:
       sort: true
     predeclared:
-      ignore: ["new","min","max"] # should we use newer, minimum, and maximum instead?
+      ignore: ["new", "min", "max"] # should we use newer, minimum, and maximum instead?
 
 formatters:
   enable:

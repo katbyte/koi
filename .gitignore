@@ -7,3 +7,5 @@
 .DS_Store
 .idea/
 PLAN.md
+.tools/bin/
+.tools/venv/
