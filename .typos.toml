@@ -1,0 +1,36 @@
+# Configuration for typos (https://github.com/crate-ci/typos), run by `make typos` and
+# .github/workflows/typos.yaml. It checks every file type (Go, markdown, YAML, shell, makefile),
+# splitting identifiers so misspelled function and variable names are caught too - misspell in
+# golangci-lint only sees Go files and enforces UK spelling in comments; typos stays on the default
+# locale because en-gb flags US spellings baked into identifiers, headers, and the licence text.
+
+[files]
+ignore-hidden = false # the default skips dotfiles, which would leave .github/ workflows unchecked
+extend-exclude = [
+  ".git/",
+  ".claude/",
+  ".idea/",
+  ".tools/bin/",  # gitignored built tools
+  ".tools/venv/", # gitignored python venv
+  "**/vendor/",   # third-party code, including integration/testdata/azurerm/vendor
+  "**/go.sum",    # hashes
+]
+
+[default]
+extend-ignore-re = [
+  'v\d+\.\d+\.\d+-\d{14}-[0-9a-f]{12}', # go.mod pseudo-versions end in a commit hash typos tries to read
+  '-[0-9a-f]{12}\b',                     # the short form used by some replace directives
+]
+
+[default.extend-words]
+# words typos would otherwise "correct" - keep this list short and explain each entry
+decorder = "decorder" # golangci linter name
+importas = "importas" # golangci linter name
+intoto = "intoto"     # in-toto attestation files published by goreleaser
+unparseable = "unparseable" # both spellings are current; this is the one the codebase uses
+
+# fragments of regex alternations and prompt strings, not words
+behaviou = "behaviou" # `behaviou?r` in lib/issue/claims.go
+clos = "clos"         # `clos(?:e|ed|ing)` in cli/close/comments.go
+sensitiv = "sensitiv" # "case sensitiv" prefix match in cli/close/fixed.go
+ody = "ody"           # "(b)ody" keypress hint in cli/review.go

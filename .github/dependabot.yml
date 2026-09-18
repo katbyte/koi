@@ -5,9 +5,13 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
 
   # dependabot auto-detects the vendor/ directory and runs `go mod tidy` + `go mod vendor` on updates
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
