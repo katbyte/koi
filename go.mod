@@ -4,7 +4,7 @@ go 1.26.6
 
 require (
 	github.com/gookit/color v1.6.1
-	github.com/katbyte/go-kt v0.1.0
+	github.com/katbyte/go-kt v0.2.0
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0

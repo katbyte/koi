@@ -27,6 +27,11 @@ const (
 	// VerbositySilent prints nothing at all, not even errors. For callers that
 	// only want the exit code.
 	VerbositySilent Verbosity = iota
+	// VerbosityJSON is for tools that emit a JSON document on stdout at the
+	// end of a run: nothing else is printed there, errors still go to Err. The
+	// document itself is the tool's to write; this level only keeps the
+	// channel clean.
+	VerbosityJSON
 	// VerbosityQuiet prints only the minimal machine-readable lines (Quietf,
 	// QuietOnlyf) and errors.
 	VerbosityQuiet
@@ -42,6 +47,8 @@ func (v Verbosity) String() string {
 	switch v {
 	case VerbositySilent:
 		return "silent"
+	case VerbosityJSON:
+		return "json"
 	case VerbosityQuiet:
 		return "quiet"
 	case VerbosityNormal:
