@@ -12,7 +12,7 @@ github.com/go-viper/mapstructure/v2/internal/errors
 # github.com/google/uuid v1.6.0
 ## explicit
 github.com/google/uuid
-# github.com/gookit/color v1.6.1
+# github.com/gookit/color v1.6.3
 ## explicit; go 1.18
 github.com/gookit/color
 # github.com/inconshreveable/mousetrap v1.1.0
